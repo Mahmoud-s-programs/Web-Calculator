@@ -1,0 +1,71 @@
+/* Apply a natural box layout model to all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.clear-btn {
+    background-color: #ff9f43 !important; /* Example color for the "Clear All" button */
+    color: white !important;
+}
+
+
+body {
+  display: flex;
+  justify-content: center;
+  background-color: darkcyan;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.calculator {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: black;
+  padding: 10px;
+  width: fit-content; /* This ensures the calculator width fits its content */
+}
+
+
+.display {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: right;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: aqua;
+  resize: none; /* Prevents resizing of the textarea */
+  overflow: hidden; /* Prevents scrolling inside the textarea */
+  height: 50px; /* Adjust height as needed */
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.btn {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  font-size: 18px;
+}
+
+.delete-btn {
+  background-color: #ff6666; /* Example color for the delete button */
+  color: white;
+}
+
+.btn:active {
+  background-color: #e6e6e6;
+}
+
+.operator {
+  background-color: #d9d9d9;
+}
