@@ -135,3 +135,44 @@ function displayError(message) {
   previousInput = '';
   operation = null;
 }
+
+
+function calculatePercentage() {
+  if (currentInput !== "") {
+    currentInput = (parseFloat(currentInput) / 100).toString();
+    updateDisplay();
+  }
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key >= "0" && event.key <= "9") {
+    appendNumber(event.key);
+  } else if (event.key === ".") {
+    appendNumber(event.key);
+  } else if (event.key === "+") {
+    chooseOperation("+");
+  } else if (event.key === "-") {
+    chooseOperation("-");
+  } else if (event.key === "*" || event.key === "x") {
+    chooseOperation("×");
+  } else if (event.key === "/") {
+    chooseOperation("÷");
+  } else if (event.key === "Enter" || event.key === "=") {
+    calculate();
+  } else if (event.key === "Backspace") {
+    deleteNumber();
+  } else if (event.key === "Escape") {
+    clearAll();
+  }
+  event.preventDefault(); 
+});
+
+function displayError(message) {
+  const display = document.getElementById('display');
+  display.value = message;
+  display.classList.add('error');
+  setTimeout(() => display.classList.remove('error'), 2000);
+  currentInput = '';
+  previousInput = '';
+  operation = null;
+}
