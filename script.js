@@ -2,11 +2,10 @@ let currentInput = "";
 let operation = null;
 let previousInput = "";
 
-// ... existing JavaScript variables ...
 
 function appendNumber(number) {
-  if (currentInput === "0" && number === "0") return; // Prevent multiple leading zeros
-  if (currentInput === "0" && number !== ".") currentInput = ""; // If current is zero, reset before new input
+  if (currentInput === "0" && number === "0") return; 
+  if (currentInput === "0" && number !== ".") currentInput = ""; 
   currentInput = currentInput.toString() + number.toString();
   updateDisplay();
 }
@@ -22,30 +21,43 @@ function chooseOperation(op) {
   updateDisplay();
 }
 
+
 function calculate() {
   let computation;
   const prev = parseFloat(previousInput);
   const current = parseFloat(currentInput);
-  if (isNaN(prev) || isNaN(current)) return;
+  if (isNaN(prev) || isNaN(current)) {
+      displayError("Invalid Input");
+      return;
+  }
   switch (operation) {
-    case "+":
-      computation = prev + current;
-      break;
-    case "-":
-      computation = prev - current;
-      break;
-    case "÷":
-      computation = prev / current;
-      break;
-    case "×":
-      computation = prev * current;
-      break;
+      case '+':
+          computation = prev + current;
+          break;
+      case '-':
+          computation = prev - current;
+          break;
+      case '÷':
+          if (current === 0) {
+              displayError("Cannot divide by zero");
+              return;
+          }
+          computation = prev / current;
+          break;
+      case '×':
+          computation = prev * current;
+          break;
+      default:
+          displayError("Unknown operation");
+          return;
   }
   currentInput = computation.toString();
   operation = undefined;
-  previousInput = "";
+  previousInput = '';
   updateDisplay();
 }
+
+
 
 function updateDisplay() {
   const display = document.getElementById("display");
@@ -66,14 +78,10 @@ function clear() {
   updateDisplay();
 }
 
-// ... existing JavaScript for deleteNumber function ...
-
 function deleteNumber() {
   if (currentInput !== "") {
-    // If there is current input, remove the last digit
     currentInput = currentInput.slice(0, -1);
   } else if (operation !== null) {
-    // If there is no current input but an operation is set, remove the operation
     operation = null;
     currentInput = previousInput;
     previousInput = "";
@@ -82,8 +90,49 @@ function deleteNumber() {
 }
 
 function clearAll() {
-    currentInput = '';
-    previousInput = '';
-    operation = null;
-    updateDisplay();
+  currentInput = "";
+  previousInput = "";
+  operation = null;
+  updateDisplay();
 }
+
+function calculatePercentage() {
+  if (currentInput !== "") {
+    currentInput = (parseFloat(currentInput) / 100).toString();
+    updateDisplay();
+  }
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key >= "0" && event.key <= "9") {
+    appendNumber(event.key);
+  } else if (event.key === ".") {
+    appendNumber(event.key);
+  } else if (event.key === "+") {
+    chooseOperation("+");
+  } else if (event.key === "-") {
+    chooseOperation("-");
+  } else if (event.key === "*" || event.key === "x") {
+    chooseOperation("×");
+  } else if (event.key === "/") {
+    chooseOperation("÷");
+  } else if (event.key === "Enter" || event.key === "=") {
+    calculate();
+  } else if (event.key === "Backspace") {
+    deleteNumber();
+  } else if (event.key === "Escape") {
+    clearAll();
+  }
+  event.preventDefault(); 
+});
+
+function displayError(message) {
+  const display = document.getElementById('display');
+  display.value = message;
+  display.classList.add('error');
+  setTimeout(() => display.classList.remove('error'), 2000);
+  currentInput = '';
+  previousInput = '';
+  operation = null;
+}
+
