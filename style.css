@@ -6,20 +6,80 @@
 }
 
 .clear-btn {
-    background-color: #ff9f43 !important; /* Example color for the "Clear All" button */
-    color: white !important;
+  background-color: #ff9f43 !important; /* Example color for the "Clear All" button */
+  color: white !important;
 }
 
 
 body {
   display: flex;
   justify-content: center;
-  background-color: darkcyan;
+  background-color: rgb(0, 7, 7);
   align-items: center;
   height: 100vh;
   margin: 0;
   font-family: Arial, sans-serif;
 }
+
+@keyframes waveFlow1 {
+  0%, 100% { transform: translateY(-25px) translateX(0) scale(1.2); }
+  50% { transform: translateY(25px) translateX(-25px) scale(1); }
+}
+
+@keyframes waveFlow2 {
+  0%, 100% { transform: translateY(-15px) translateX(0) scale(1.1); }
+  50% { transform: translateY(15px) translateX(15px) scale(0.9); }
+}
+
+.space-ocean {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #0f0c29, #302b63, #24243e);
+  overflow: hidden;
+  z-index: -1;
+}
+
+.wave {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 300%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 5%,
+    transparent 5% 10%,
+    rgba(255, 255, 255, 0.2) 10% 15%
+  );
+  animation: waveFlow1 12s linear infinite;
+  transform: translateX(-50%);
+  opacity: 0.7;
+}
+
+.wave:before,
+.wave:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+}
+
+.wave:before {
+  transform: rotate(10deg);
+  animation: waveFlow2 12s linear infinite;
+}
+
+.wave:after {
+  transform: rotate(-10deg);
+  animation: waveFlow2 12s linear infinite;
+}
+
 
 .calculator {
   border: 1px solid #ccc;
@@ -27,8 +87,8 @@ body {
   background-color: black;
   padding: 10px;
   width: fit-content; /* This ensures the calculator width fits its content */
-}
 
+}
 
 .display {
   width: 100%;
@@ -37,10 +97,12 @@ body {
   text-align: right;
   border: 1px solid #ccc;
   border-radius: 5px;
-  color: aqua;
-  resize: none; /* Prevents resizing of the textarea */
-  overflow: hidden; /* Prevents scrolling inside the textarea */
-  height: 50px; /* Adjust height as needed */
+  cursor: text;
+  background-color: rgb(4, 14, 35);
+  color: rgb(242, 236, 236);
+  resize: none;
+  overflow: hidden;
+  height: 50px;
 }
 
 .buttons {

@@ -7,8 +7,11 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="space-ocean">
+      <div class="wave"></div>
+    </div>
     <div class="calculator">
-      <textarea id="display" class="display" disabled></textarea>
+      <input type="text" id="display" class="display" readonly />
       <div class="buttons">
         <button class="btn" onclick="appendNumber('7')">7</button>
         <button class="btn" onclick="appendNumber('8')">8</button>
@@ -26,9 +29,12 @@
         <button class="btn" onclick="appendNumber('.')">.</button>
         <button class="btn span-two" onclick="calculate()">=</button>
         <button class="btn operator" onclick="chooseOperation('+')">+</button>
-        <button class="btn" onclick="deleteNumber()">DEL</button>
         <button class="btn clear-btn" onclick="clearAll()">AC</button>
-        </div>
+        <button class="btn" onclick="deleteNumber()">DEL</button>
+        <button class="btn percentage-btn" onclick="calculatePercentage()">
+          %
+        </button>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>
