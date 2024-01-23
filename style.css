@@ -6,15 +6,15 @@
 }
 
 .clear-btn {
-    background-color: #ff9f43 !important; /* Example color for the "Clear All" button */
-    color: white !important;
+  background-color: #ff9f43 !important; /* Example color for the "Clear All" button */
+  color: white !important;
 }
 
 
 body {
   display: flex;
   justify-content: center;
-  background-color: darkcyan;
+  background-color: rgb(0, 7, 7);
   align-items: center;
   height: 100vh;
   margin: 0;
@@ -29,7 +29,6 @@ body {
   width: fit-content; /* This ensures the calculator width fits its content */
 }
 
-
 .display {
   width: 100%;
   padding: 10px;
@@ -37,10 +36,12 @@ body {
   text-align: right;
   border: 1px solid #ccc;
   border-radius: 5px;
-  color: aqua;
-  resize: none; /* Prevents resizing of the textarea */
-  overflow: hidden; /* Prevents scrolling inside the textarea */
-  height: 50px; /* Adjust height as needed */
+  cursor: text;
+  background-color: rgb(4, 14, 35);
+  color: rgb(242, 236, 236);
+  resize: none;
+  overflow: hidden;
+  height: 50px;
 }
 
 .buttons {
@@ -69,3 +70,4 @@ body {
 .operator {
   background-color: #d9d9d9;
 }
+
