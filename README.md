@@ -24,6 +24,10 @@ The Web Calculator is a basic calculator application that you can use in your we
 - User-friendly interface.
 - Real-time calculation and result display.
 
+## Demo
+
+You can view a live demo of the web calculator [here](https://incredible-speculoos-57d77e.netlify.app/).
+
 ## Screenshots
 
 ![Calculator Screenshot](/calc.png)
